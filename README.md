@@ -1,10 +1,12 @@
 # Firetoken
 
-A utility command line tool to signin to a Firebase project given a email and password.
+A command line utility to sign-in to a Firebase project given an email and password. Intended to be used whilst developing applications that need to call Firebase.
 
 The utlity will return a JWT and details about the claims for this user.
 
 ## Usage
+
+### Grab a JWT
 ```
 $ firetoken -w AIzaSyBS6cml-rrPpIrSgf6Mqc3ZeSI_B50sdxg
 ? Email: andy@andyfusniak.com
@@ -17,6 +19,12 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk3ZmNiY2EzNjhmZTc3ODA4ODMwYzgxMDAxMjFlYzdiZGUyMmNm
 
 Claims:
 CUUID: a885a9ab-5b22-4fe4-882b-c508b1a0347b Role: customer
+```
+
+### Show version
+```
+$ firetoken -v
+v0.1.0
 ```
 
 ## Build
