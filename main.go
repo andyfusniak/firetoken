@@ -47,32 +47,30 @@ type badRequestResponse struct {
 	} `json:"error"`
 }
 
-type JWTPayload struct {
-	CUUID string `json:"cuuid,omitempty"`
-	Role  string `json:"role,omitempty"`
-}
+type JWTPayload map[string]interface{}
 
-func (p JWTPayload) String() string {
-	return fmt.Sprintf("CUUID: %s Role: %s", p.CUUID, p.Role)
+func (p JWTPayload) Print() {
+	for k, v := range p {
+		fmt.Printf("%s: %v\n", k, v)
+	}
 }
 
 type IDToken string
 
-func (t IDToken) Claims() (string, error) {
+func (t IDToken) Claims() (JWTPayload, error) {
 	parts := strings.Split(string(t), ".")
 	decoded, err := base64.RawStdEncoding.DecodeString(parts[1])
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
-	var payload JWTPayload
+	var payload map[string]interface{}
 	err = json.Unmarshal(decoded, &payload)
 	if err != nil {
-		fmt.Errorf("%v", err)
-		return "", err
+		fmt.Printf("%v", err)
+		return nil, err
 	}
-
-	return payload.String(), nil
+	return payload, nil
 }
 
 func verifyPassword(key, email, password string) (*verifyPasswordResponse, error) {
@@ -175,6 +173,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("\nClaims:\n%s\n", claims)
+	fmt.Println()
+	fmt.Println("Claims:")
+	claims.Print()
 	os.Exit(0)
 }
