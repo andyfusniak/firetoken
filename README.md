@@ -2,7 +2,7 @@
 
 A command line utility to sign-in to a Firebase project given an email and password. Intended to be used whilst developing applications that need to call Firebase.
 
-The utlity will return a JWT and details about the claims for this user.
+The utility will return a JWT and details about the claims for this user.
 
 ## Usage
 
