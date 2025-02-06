@@ -25,7 +25,7 @@ type verifyPasswordRequest struct {
 }
 
 type verifyPasswordResponse struct {
-	Kind         string  `json:"king"`
+	Kind         string  `json:"kind"`
 	LocalID      string  `json:"localId"`
 	Email        string  `json:"email"`
 	DisplayName  string  `json:"displayName"`
